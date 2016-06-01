@@ -1,0 +1,89 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Berlin}
+
+\title{Korrektheit von Programmen beweisen mit Coq}
+\institute{Linux Tag Tübingen 2016}
+\author{Peter Hrenka}
+\date{\today}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+\section*{Übersicht}
+\begin{frame}
+  \tableofcontents
+\end{frame}
+\section{Einführung}
+\begin{frame}
+  \frametitle{Über mich}
+  \begin{itemize}
+    \item Linux seit 1995
+    \item Studium Informatik und Mathematik in Tübingen
+    \item Sofwareentwickler C++, OpenGL
+  \end{itemize}
+\end{frame}
+\subsection{Softwarequalität}
+\begin{frame}
+  ``Jedes nicht-triviale Programm hat Fehler''\\
+  \pause
+  \vfill
+  Warum?
+  \pause
+  \vfill
+  \begin{enumerate}
+    \item Fehlendes Verständnis des Problems
+    \pause
+    \item Fehlerhafte ``Spezifikation''
+    \pause
+    \item Implementierung nicht korrekt
+  \end{enumerate}
+\end{frame}
+\subsection{Methoden}
+\begin{frame}
+  Wie kann man die Korrektheit (bzgl. der Spezifikation) sicherstellen?
+  \begin{itemize}
+  \item Open Source
+  \item Pair Programming
+  \item Code Reviews
+  \item Bug Bounties
+  \item Testen
+  \item Statische Analyse \pause
+  \end{itemize}
+  \vfill
+  Alles hilft ein wenig aber nicht $100\%$ig 
+\end{frame}
+\section{Coq}
+\subsection{Geschichte}
+\begin{frame}
+  \begin{itemize}
+  \item Beweisassistenzsystem
+  \item entwickelt am INRIA
+  \item implementiert in OCaml
+  \item verwendet ``dependend types''
+  \item interaktiv
+  \end{itemize}
+\end{frame}
+\subsection{Verwendung}
+\section{Demo}
+\begin{frame}
+  \begin{center}
+    \huge{Demo}
+  \end{center}
+\end{frame}
+\section{Zusammenfassung}
+\begin{frame}
+    \begin{itemize}
+  \item Sätze sind Typen
+  \item Programme sind Beweise
+  \item Induktion geht nicht nur mit $n\in\mathbb{N}$
+  \item Automatisierung hilft
+  \end{itemize}
+\end{frame}
+\section{Ausblick}
+\begin{frame}
+\end{frame} % to enforce entries in the table of contents
+
+\end{document}
