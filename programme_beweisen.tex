@@ -1,6 +1,8 @@
 \documentclass[aspectratio=169]{beamer}
 \usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
 \usepackage{graphics}
+\usepackage{amsmath}
 
 \usetheme{Berlin}
 
@@ -20,9 +22,9 @@
 \begin{frame}
   \frametitle{Über mich}
   \begin{itemize}
-    \item Linux seit 1995
+    \item Linux Anwender seit 1995
     \item Studium Informatik und Mathematik in Tübingen
-    \item Sofwareentwickler C++, OpenGL
+    \item Sofwareentwickler \texttt{C++}, \texttt{python}, OpenGL
   \end{itemize}
 \end{frame}
 \section{Einführung}
@@ -62,11 +64,10 @@
   Alles hilft ein wenig aber nicht $100\%$ig 
 \end{frame}
 \section{Coq}
-\subsection{Geschichte}
 \begin{frame}
   \begin{center}
     \includegraphics[width=1.0cm]{coq_logo.png}
-    \Large{Coq}
+    \Large{\texttt{Coq}}
   \end{center}
   \begin{itemize}
   \item Beweisassistenzsystem
@@ -76,7 +77,19 @@
   \item interaktiv
   \end{itemize}
 \end{frame}
-\subsection{Verwendung}
+\begin{frame}
+  \begin{center}
+    \Large{Mathematik mit \texttt{Coq}}
+  \end{center}
+  \begin{itemize}
+  \item Vier-Farben-Satz, 2005
+  \item Satz von Feit-Thomson (Gruppentheorie), 2012
+  \item Univalent Foundations, Homotopy Type Theory (HoTT), ca. 2012
+  \end{itemize}
+  \pause
+  \vfill
+  $\rightarrow$ scheint für Mathematik brauchbar, wie sieht es mit Informatik aus?
+\end{frame}
 \begin{frame}
   \begin{center}
     \Large{CompCert}
@@ -85,8 +98,8 @@
   \item ``Compilers you can \textit{formally} trust''
   \item große Teilmenge von ISO C90 / ANSI C language
   \item MISRA-C 2004
-  \item generiert effizienten Code für PowerPC, ARM and x86
-  \item ``about 90\% of the performance of GCC version 4 at optimization level 1''
+  \item generiert effizienten Code für PowerPC, ARM and x86\\
+    ``about 90\% of the performance of GCC version 4 at optimization level 1''
   \item implementiert in \texttt{OCaml} und \texttt{coq}
   \item geleitet von Xavier Leroy (LinuxThreads) 
   \item nicht-freie Lizenz, aber einige Teile unter GPL und BSD
@@ -99,10 +112,39 @@
 \end{frame}
 \begin{frame}
   \begin{center}
+    \includegraphics[width=8.0cm]{spark_logo.jpg}    
+    %\Large{\texttt{SPARK}}
+  \end{center}
+  \begin{itemize}
+  \item Erweitere Untermenge von \texttt{Ada}
+  \item kann Vor- und Nachbedingungen teilweise zur Compilezeit prüfen
+  \item kann \texttt{coq}-Code exportieren, um schwere Fälle manuell zu beweisen
+  \item Pro- und GPL Editionen
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \begin{center}
+    %\includegraphics[width=3.0cm]{why3_logo.png}    
+    \Large{\texttt{Why3}}
+  \end{center}
+  \begin{itemize}
+  \item Platform für Programmverfikation von Programmen in \texttt{WhyML}
+  \item Anbindungen für andere Programmiersprachen existieren
+    \begin{itemize}
+    \item \texttt{Frama-C} für \texttt{C}
+    \item \texttt{SPARK} für \texttt{Ada}
+    \end{itemize}
+  \item Automatische Solver: \texttt{Alr-Ergo}, \texttt{CVC3/4}, \texttt{Z3}, uvm. 
+  \item Manuelle Solver: \texttt{coq}, \texttt{PVS} und \texttt{Isabelle/HOL}
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \begin{center}
     \includegraphics[width=3.0cm]{fscq_logo.png}
   \end{center}
   \begin{itemize}
   \item ``A Formally Certified Crash-proof File System''
+  \item Nachweis, daß bei Absturz zu beliebigem Zeitpunkt keine Daten verloren gehen
   \item MIT 2015, u.A. Adam Chlipala
   \item implementiert in \texttt{coq}
   \item extrahierbar nach \texttt{ocaml}, \texttt{Haskell} oder \texttt{go}
@@ -117,7 +159,7 @@
 \end{frame}
 \section{Zusammenfassung}
 \begin{frame}
-    \begin{itemize}
+  \begin{itemize}
   \item Sätze sind Typen
   \item Programme sind Beweise
   \item Induktion geht nicht nur mit $n\in\mathbb{N}$
@@ -126,6 +168,20 @@
 \end{frame}
 \section{Ausblick}
 \begin{frame}
+  \begin{center}
+    \Large{Probleme}
+  \end{center}
+  \begin{itemize}
+  \item Offizielle Dokumentation (höchstens) zum Nachschlagen geeignet
+  \item Standardbibliothek mathematiklastig
+  \item Unidirektione Arbeitsweise 
+    \begin{itemize}
+    \item \texttt{coq} $\longrightarrow$ \texttt{OCaml}
+    \end{itemize}
+  \item Kein Export nach \texttt{C}, \texttt{C++}
+  \item 
+  \end{itemize}
+
 \end{frame} % to enforce entries in the table of contents
 
 \end{document}
