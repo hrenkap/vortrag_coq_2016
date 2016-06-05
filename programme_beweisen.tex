@@ -71,9 +71,10 @@
   \end{center}
   \begin{itemize}
   \item Beweisassistenzsystem
+  \item ``coq'': französisch ``Hahn''
   \item entwickelt am INRIA
   \item implementiert in \texttt{OCaml}
-  \item verwendet ``dependend types''
+  \item verwendet ``dependent types''
   \item interaktiv
   \end{itemize}
 \end{frame}
@@ -134,8 +135,8 @@
     \item \texttt{Frama-C} für \texttt{C}
     \item \texttt{SPARK} für \texttt{Ada}
     \end{itemize}
-  \item Automatische Solver: \texttt{Alr-Ergo}, \texttt{CVC3/4}, \texttt{Z3}, uvm. 
-  \item Manuelle Solver: \texttt{coq}, \texttt{PVS} und \texttt{Isabelle/HOL}
+  \item Automatische Solver: \texttt{Alt-Ergo}, \texttt{CVC3/4}, \texttt{Z3}, uvm. 
+  \item Manuelle Solver: \underline{\texttt{coq}}, \texttt{PVS} und \texttt{Isabelle/HOL}
   \end{itemize}
 \end{frame}
 \begin{frame}
@@ -157,8 +158,11 @@
     \huge{Demo}
   \end{center}
 \end{frame}
-\section{Zusammenfassung}
+\section{Fazit}
 \begin{frame}
+  \begin{center}
+    \Large{Demo hat gezeigt}
+  \end{center}
   \begin{itemize}
   \item Sätze sind Typen
   \item Programme sind Beweise
@@ -166,22 +170,48 @@
   \item Automatisierung hilft
   \end{itemize}
 \end{frame}
-\section{Ausblick}
+\begin{frame}
+  \begin{center}
+    \Large{Dokumentation}
+  \end{center}
+  \begin{itemize}
+  \item gutes Tutorial zum Durcharbeiten: Software Foundations\\
+    \qquad \url{http://www.cis.upenn.edu/~bcpierce/sf/current/index.html}
+  \item Älteres Buch: Interactive Theorem Proving and Program Development:\\
+  \item Online-Buch (Fortgeschritten): Certified Programming with dependent types:\\
+    \qquad \url{http://adam.chlipala.net/cpdt/}
+  \item Offizielle Doku:\\
+    \qquad \url{https://coq.inria.fr/documentation}
+  \end{itemize}
+\end{frame}
 \begin{frame}
   \begin{center}
     \Large{Probleme}
   \end{center}
   \begin{itemize}
   \item Offizielle Dokumentation (höchstens) zum Nachschlagen geeignet
-  \item Standardbibliothek mathematiklastig
+  \item Standardbibliothek mathematiklastig, wenig Datenstrukturen
   \item Unidirektione Arbeitsweise 
     \begin{itemize}
     \item \texttt{coq} $\longrightarrow$ \texttt{OCaml}
     \end{itemize}
-  \item Kein Export nach \texttt{C}, \texttt{C++}
-  \item 
+  \item Kein Export nach \texttt{C}, \texttt{C++}, $\left<\textit{mainstream Sprache}\right>$
   \end{itemize}
 
 \end{frame} % to enforce entries in the table of contents
-
+\begin{frame}
+  \begin{center}
+    \Large{Projekte}
+  \end{center}
+  \begin{itemize}
+  \item Floats for Coq: formalisiere Fließkommazahlen\\
+    \qquad \url{http://flocq.gforge.inria.fr/}
+  \item JSCert: Coq specification of ECMAScript 5\\
+    \qquad \url{https://github.com/jscert/jscert}
+  \item The C11 standard formalized in Coq\\
+    \qquad \url{http://robbertkrebbers.nl/thesis.html}
+  \item RustBelt: Logical Foundations for the Future of Safe Systems Programming\\
+    \qquad \url{http://plv.mpi-sws.org/rustbelt/}
+  \end{itemize}
+\end{frame}
 \end{document}
