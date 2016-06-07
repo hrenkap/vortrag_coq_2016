@@ -44,6 +44,50 @@ Qed.
 (* Abhängige Typen *)
 (* *************** *)
 
+(* algebraischer Datentyp, strikte Version von C union *)
+Inductive A : Set :=
+ | ANat :  nat -> A
+ | ABool : bool -> A
+.
+
+(* Funktion, die den Typ der Instanz liefert *)
+Fixpoint atype (a : A) : Type :=
+ match a with
+  | ANat n  => nat
+  | ABool b => bool
+end.
+
+Example atype_nat: atype (ANat 1) = nat.
+Proof.
+  simpl. reflexivity.
+Qed.
+
+Example atype_bool: atype (ABool true) = bool.
+Proof.
+ simpl. reflexivity. 
+Qed.
+
+(* Funktion, die "inneren" Wert liefert, strikt! *)
+Fixpoint aval (a : A) : (atype a) :=
+ match a with
+ | ANat n  => n
+ | ABool b => b
+end.
+
+Example aval_nat: aval (ANat 1) = 1.
+Proof.
+  reflexivity. 
+Qed.
+
+Example aval_nat_all: forall n:nat, aval (ANat n) = n.
+Proof. 
+  intro. simpl. reflexivity.
+Qed.
+
+Example aval_bool: aval (ABool true) = true.
+Proof.
+  reflexivity.
+Qed.
 
 (* ******************* *)
 (* einfache Arithmetik *)
@@ -112,32 +156,21 @@ Inductive sorted : list nat -> Prop :=
   | sorted2 : forall (n1 n2:nat) (l: list nat), n1 <= n2 -> 
               sorted (n2 :: l ) -> sorted (n1 :: n2 :: l).
 
-Hint Resolve sorted0 sorted1 sorted2 : sort.
-
-Theorem sorted_red: forall (n:nat) (l: list nat), sorted(n::l) -> sorted l.
+Example sorted_123: sorted (1::2::3::nil).
 Proof.
- intros n l H.
- inversion H. apply sorted0. assumption.
+ apply sorted2. apply le_S. apply le_n.
+ apply sorted2. auto with arith.
+ apply sorted1.
 Qed.
 
-Fixpoint merge (l1 l2: list nat) : list nat :=
-  match l1, l2 with
-  | _, nil => l1
-  | nil, _ => l2
-  | h1::r1, h2::r2 => if Nat.leb h1 h2 then h1::h2::(merge r1 r2) 
-                                       else h2::h1::(merge r1 r2)
-  end.
+Example not_sorted_321: ~sorted (3::2::1::nil).
+Proof.
+ red. intro H. inversion H. subst.
+ apply Gt.le_not_gt in H2. red in H2. apply H2.
+ apply le_n.
+Qed.
 
-Fixpoint split (l : list nat) : (list nat)*(list nat) :=
-  match l with
-  | nil => (nil, nil)
-  | h::nil => (l, nil)
-  | h1::h2::r => match (split r) with
-                 | (l1, l2) => (h1::l1, h2::l2)
-                 end
-  end.
-
-Eval compute in (split (1::2::3::4::5::nil)).
+Hint Resolve sorted0 sorted1 sorted2 : sort.
 
 Search({ _ <= _}+{ _ > _}).
 
@@ -148,11 +181,12 @@ Fixpoint insert (n: nat) (l: list nat) : list nat :=
            | left _ => n::h::r
            | right _ => h::(insert n r)
            end
- end.
+end.
 
+Notation "n ->> l" := (insert n l) (at level 60).
 
 Lemma insert_sorted: forall (n: nat) (l: list nat),
- sorted l -> sorted (insert n l).
+                      sorted l -> sorted (insert n l).
 Proof.
  intros n l H.
  elim H.
@@ -164,7 +198,7 @@ Proof.
    case (Compare_dec.le_gt_dec n n2). intros; auto with sort arith.
    case (Compare_dec.le_gt_dec n n1). intros; auto with sort arith.
     intros. auto with sort arith.
-  intros. simpl. 
+  intros. 
    case (Compare_dec.le_gt_dec n n1). intros; auto with sort arith.
    intros. apply sorted2; assumption.
 Qed.
@@ -175,7 +209,6 @@ Fixpoint isort (l: list nat) : list nat :=
  | nil => nil
  | h::r => insert h (isort r)
  end.
-
 
 Eval compute in (isort (4::1::5::3::2::nil)).
 

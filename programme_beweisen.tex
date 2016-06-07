@@ -61,7 +61,35 @@
   \item Statische Analyse \pause
   \end{itemize}
   \vfill
-  Alles hilft ein wenig aber nicht $100\%$ig 
+  Kann alles helfen, aber was, wenn man $100\%$ig sicher sein will? 
+\end{frame}
+\begin{frame}
+  \begin{center}
+    \includegraphics[width=4.0cm]{sel4_logo.pdf}
+    \Large{\texttt{seL4}}
+  \end{center}
+  \begin{itemize}
+  \item Microkernel, Devices laufen im Userspace
+  \item Implementiert in C
+  \item Läuft auf ARM, x86
+  \item GPL
+  \item Formaler Beweis mit Beweisassistenzsystem \texttt{Isabelle/HOL}
+    \begin{itemize}
+    \item Keine Pufferüberläufe, Null-Pointer-Zugriffe oder use-after-free
+    \item Code erfüllt die Spezifikation, Sicherheitsaspekte
+    \item Binärcode ebenfalls verifiziert (Compiler hat keine Fehler gemacht)
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \begin{center}
+    \Large{Wie soll so ein Beweis funktionieren?}
+  \end{center}
+  \pause
+  \vfill
+  \begin{center}
+    \Large{Macht das Spaß?}
+  \end{center}  
 \end{frame}
 \section{Coq}
 \begin{frame}
