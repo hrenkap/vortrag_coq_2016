@@ -52,6 +52,7 @@
 \subsection{Methoden}
 \begin{frame}
   Wie kann man die Korrektheit (bzgl. der Spezifikation) sicherstellen?
+  \vfill
   \begin{itemize}
   \item Testen
   \item Pair Programming
@@ -61,7 +62,21 @@
   \item Statische Analyse \pause
   \end{itemize}
   \vfill
-  Kann alles helfen, aber was, wenn man $100\%$ig sicher sein will? 
+  \begin{center}
+    Reicht das? 
+  \end{center}
+\end{frame}
+\begin{frame}
+  \begin{center}
+    \Large{Timsort}
+  \end{center}
+  \begin{itemize}
+  \item Verbreiteter Sortieralgorithmus (Java, Android)
+  \item relativ kompliziert
+  \item 2015: Formale Verfikation fehlgeschlagen! $\rightarrow$ Bug!
+  \item \href{http://envisage-project.eu/proving-android-java-and-python-sorting-algorithm-is-broken-and-how-to-fix-it/}{proving-android-java-and-python-sorting-algorithm-is-broken}
+  \item Verwendetes Tool KeY: \url{http://www.key-project.org/}
+  \end{itemize}
 \end{frame}
 \begin{frame}
   \begin{center}
@@ -118,7 +133,9 @@
   \end{itemize}
   \pause
   \vfill
-  $\rightarrow$ scheint für Mathematik brauchbar, wie sieht es mit Informatik aus?
+  \begin{center}  
+    $\rightarrow$ scheint für Mathematik brauchbar, wie sieht es mit Informatik aus?
+  \end{center}
 \end{frame}
 \begin{frame}
   \begin{center}
@@ -126,7 +143,7 @@
   \end{center}
   \begin{itemize}
   \item ``Compilers you can \textit{formally} trust''
-  \item große Teilmenge von ISO C90 / ANSI C language
+  \item große Teilmenge von ISO C90 / ANSI C
   \item MISRA-C 2004
   \item generiert effizienten Code für PowerPC, ARM and x86\\
     ``about 90\% of the performance of GCC version 4 at optimization level 1''
@@ -176,7 +193,7 @@
   \item ``A Formally Certified Crash-proof File System''
   \item Nachweis, daß bei Absturz zu beliebigem Zeitpunkt keine Daten verloren gehen
   \item MIT 2015, u.A. Adam Chlipala
-  \item implementiert in \texttt{coq}
+  \item implementiert und verfiziert in \texttt{coq}
   \item extrahierbar nach \texttt{ocaml}, \texttt{Haskell} oder \texttt{go}
   \item verwenbar mit \texttt{fuse} 
   \end{itemize}
@@ -193,8 +210,10 @@
     \Large{Demo hat gezeigt}
   \end{center}
   \begin{itemize}
-  \item Sätze sind Typen
-  \item Programme sind Beweise
+  \item Aussagenlogik ist leicht
+  \item Arithmetik ist fummelig
+  \item Coq $=$ schlechtestes Taschenrechnerprogramm der Welt!
+  \item Sätze sind Typen, Programme sind Beweise (Curry-Howard-Isomorphismus)
   \item Induktion geht nicht nur mit $n\in\mathbb{N}$
   \item Automatisierung hilft
   \end{itemize}
@@ -206,7 +225,7 @@
   \begin{itemize}
   \item gutes Tutorial zum Durcharbeiten: Software Foundations\\
     \qquad \url{http://www.cis.upenn.edu/~bcpierce/sf/current/index.html}
-  \item Älteres Buch: Interactive Theorem Proving and Program Development:\\
+  \item Älteres Buch: Interactive Theorem Proving and Program Development
   \item Online-Buch (Fortgeschritten): Certified Programming with dependent types:\\
     \qquad \url{http://adam.chlipala.net/cpdt/}
   \item Offizielle Doku:\\

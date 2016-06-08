@@ -89,11 +89,31 @@ Proof.
   reflexivity.
 Qed.
 
+Definition nat_fun: nat -> nat.
+ intro n.
+ exact (n*n+4).
+Defined.
+
+Check nat_fun. (* Typ zeigen *)
+Print nat_fun. (* Definition zeigen *)
+
+Definition all_self_equal: forall n:nat, n=n.
+Proof. auto. Defined.
+
+Print all_self_equal.
+Check (fun n:nat => eq_refl).
+
 (* ******************* *)
 (* einfache Arithmetik *)
 (* ******************* *)
 
 Require Mult.
+
+Lemma big_less: 1 < 6000.
+Proof. 
+ auto with arith.
+ Show Proof.
+Qed.
 
 Lemma times2: forall n: nat, n+n=2*n.
 Proof.
@@ -116,7 +136,7 @@ Qed.
 Theorem binom1: forall a b: nat, (a+b)*(a+b) = a*a + 2*a*b +b*b.
 Proof.
  intros.
- Search ( (_+_)*_ ).
+ Search ( (_+_)*_).
  rewrite PeanoNat.Nat.mul_add_distr_r.
  rewrite PeanoNat.Nat.mul_add_distr_l.
  rewrite PeanoNat.Nat.mul_add_distr_l.
@@ -165,9 +185,8 @@ Qed.
 
 Example not_sorted_321: ~sorted (3::2::1::nil).
 Proof.
- red. intro H. inversion H. subst.
- apply Gt.le_not_gt in H2. red in H2. apply H2.
- apply le_n.
+ red. intro H. inversion H. subst. auto with arith.
+ apply Gt.le_not_gt in H2. auto with arith.
 Qed.
 
 Hint Resolve sorted0 sorted1 sorted2 : sort.
