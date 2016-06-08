@@ -8,8 +8,8 @@
 
 \title{Korrektheit von Programmen beweisen mit Coq}
 \institute{Linux Tag Tübingen 2016}
-\author{Peter Hrenka}
-\date{\today}
+\author[P.Hrenka]{Peter Hrenka}
+\date{11. Juni 2016}
 
 \begin{document}
 \begin{frame}
@@ -25,6 +25,8 @@
     \item Linux Anwender seit 1995
     \item Studium Informatik und Mathematik in Tübingen
     \item Sofwareentwickler \texttt{C++}, \texttt{python}, OpenGL
+    \item regelmäßig auf OpenSource Konferenzen anzutreffen
+    \item email \tiny\texttt{\{Vorname\}@\{Nachname\}.de}
   \end{itemize}
 \end{frame}
 \section{Einführung}
@@ -113,13 +115,14 @@
     \Large{\texttt{Coq}}
   \end{center}
   \begin{itemize}
-  \item Beweisassistenzsystem
+  \item Beweisassistenzsystem, in Entwicklung sei 1984
   \item ``coq'': französisch ``Hahn''
-  \item entwickelt am INRIA
+  \item entwickelt u.a. am INRIA
   \item implementiert in \texttt{OCaml}
   \item verwendet ``dependent types''
   \item interaktiv, eigene IDE \texttt{coqide} oder \texttt{Proof General} für Emacs
   \item online (via JS transpiler) \url{https://x80.org/rhino-coq/}
+  \item LGPL
   \end{itemize}
 \end{frame}
 \begin{frame}
@@ -212,8 +215,9 @@
   \begin{itemize}
   \item Aussagenlogik ist leicht
   \item Arithmetik ist fummelig
-  \item Coq $=$ schlechtestes Taschenrechnerprogramm der Welt!
-  \item Sätze sind Typen, Programme sind Beweise (Curry-Howard-Isomorphismus)
+  \item Coq $=$ schlechtestes Taschenrechnerprogramm der Welt
+  \item Geniale Notationsfunktionalität
+  \item Sätze sind Typen, Programme sind Beweise (\href{https://de.wikipedia.org/wiki/Curry-Howard-Isomorphismus}{Curry-Howard-Isomorphismus})
   \item Induktion geht nicht nur mit $n\in\mathbb{N}$
   \item Automatisierung hilft
   \end{itemize}
