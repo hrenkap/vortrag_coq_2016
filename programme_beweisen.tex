@@ -8,16 +8,12 @@
 
 \title{Korrektheit von Programmen beweisen mit Coq}
 \institute{Linux Tag Tübingen 2016}
-\author[P.Hrenka]{Peter Hrenka}
+\author{Peter Hrenka}
 \date{11. Juni 2016}
 
 \begin{document}
 \begin{frame}
 \titlepage
-\end{frame}
-\section*{Übersicht}
-\begin{frame}
-  \tableofcontents
 \end{frame}
 \begin{frame}
   \frametitle{Über mich}
@@ -26,22 +22,28 @@
     \item Studium Informatik und Mathematik in Tübingen
     \item Sofwareentwickler \texttt{C++}, \texttt{python}, OpenGL
     \item regelmäßig auf OpenSource Konferenzen anzutreffen
-    \item email \tiny\texttt{\{Vorname\}@\{Nachname\}.de}
+    \item Programmiersprachenjunkie
   \end{itemize}
 \end{frame}
+\section*{Übersicht}
+\begin{frame}
+  \tableofcontents
+\end{frame}
 \section{Einführung}
-\subsection{Softwarequalität}
+%\subsection{Softwarequalität}
 \begin{frame}
   \begin{center}
     \includegraphics[width=9.2cm]{projekt-schaukel-baum.png}
   \end{center}
 \end{frame}
 \begin{frame}
-  ``Jedes nicht-triviale Programm hat Fehler''\\
-  \pause
-  \vfill
-  Warum?
-  \pause
+  \begin{center}
+    \Large{``Jedes nicht-triviale Programm hat Fehler''}\\
+    \pause
+    \vfill
+    \Large{Warum?}
+    \pause
+  \end{center}
   \vfill
   \begin{enumerate}
     \item Fehlendes Verständnis des Problems
@@ -51,7 +53,17 @@
     \item Implementierung nicht korrekt
   \end{enumerate}
 \end{frame}
-\subsection{Methoden}
+\begin{frame}
+  \begin{center}
+    \Large{Unser Tagesziel:}\\
+    \vfill
+    \includegraphics[width=5.2cm]{projekt-arch-prog.png}
+    \vfill
+    \pause
+    \Large{Rest unverändert$\ldots$}
+  \end{center}
+\end{frame}
+\section{Formale Systeme}
 \begin{frame}
   Wie kann man die Korrektheit (bzgl. der Spezifikation) sicherstellen?
   \vfill
@@ -61,7 +73,8 @@
   \item Code Reviews
   \item Bug Bounties
   \item Open Source
-  \item Statische Analyse \pause
+  \item Statische Analyse 
+  \item Audit \pause
   \end{itemize}
   \vfill
   \begin{center}
@@ -70,20 +83,22 @@
 \end{frame}
 \begin{frame}
   \begin{center}
-    \Large{Timsort}
+    \Large{Fallbeispiel: Timsort}
   \end{center}
   \begin{itemize}
-  \item Verbreiteter Sortieralgorithmus (Java, Android)
+  \item Verbreiteter Sortieralgorithmus aus der Praxis (Python, Java, Android)
   \item relativ kompliziert
-  \item 2015: Formale Verfikation fehlgeschlagen! $\rightarrow$ Bug!
-  \item \href{http://envisage-project.eu/proving-android-java-and-python-sorting-algorithm-is-broken-and-how-to-fix-it/}{proving-android-java-and-python-sorting-algorithm-is-broken}
+  \item 2015: Formale Verfikation fehlgeschlagen und Bug gefunden!
+  \item \href{http://envisage-project.eu/proving-android-java-and-python-sorting-algorithm-is-broken-and-how-to-fix-it/}{\texttt{proving-android-java-and-python-sorting-algorithm-is-broken}}
   \item Verwendetes Tool KeY: \url{http://www.key-project.org/}
+  \item Zähneknischende Korrektur
   \end{itemize}
 \end{frame}
 \begin{frame}
   \begin{center}
+    Verifiziertes Betriebssystem:\\
     \includegraphics[width=4.0cm]{sel4_logo.pdf}
-    \Large{\texttt{seL4}}
+    %\Large{\texttt{seL4}}
   \end{center}
   \begin{itemize}
   \item Microkernel, Devices laufen im Userspace
@@ -100,12 +115,14 @@
 \end{frame}
 \begin{frame}
   \begin{center}
+    \vfill
     \Large{Wie soll so ein Beweis funktionieren?}
-  \end{center}
-  \pause
-  \vfill
-  \begin{center}
-    \Large{Macht das Spaß?}
+    \pause
+    \vfill
+    \Large{Ist mein Sortieralgorithmus korrekt?}
+    \pause
+    \vfill
+    \Large{Welches Beweisassistenzsystem nehmen?}
   \end{center}  
 \end{frame}
 \section{Coq}
@@ -146,8 +163,7 @@
   \end{center}
   \begin{itemize}
   \item ``Compilers you can \textit{formally} trust''
-  \item große Teilmenge von ISO C90 / ANSI C
-  \item MISRA-C 2004
+  \item große Teilmenge von ISO C90 / ANSI C, verträglich mit MISRA-C 2004
   \item generiert effizienten Code für PowerPC, ARM and x86\\
     ``about 90\% of the performance of GCC version 4 at optimization level 1''
   \item implementiert in \texttt{OCaml} und \texttt{coq}
@@ -157,36 +173,13 @@
 \end{frame}
 \begin{frame}
   \begin{center}
-    \includegraphics[width=20.0cm]{compcert_diagram.png}
+    \includegraphics[trim=0 0 1000 0,clip,width=\textwidth]{compcert_diagram.png}
   \end{center}
 \end{frame}
 \begin{frame}
   \begin{center}
-    %\includegraphics[width=3.0cm]{why3_logo.png}    
-    \Large{\texttt{Why3}}
+    \includegraphics[trim=1200 0 0 0,clip,width=\textwidth]{compcert_diagram.png}
   \end{center}
-  \begin{itemize}
-  \item Platform für Programmverfikation von Programmen in \texttt{WhyML}
-  \item Anbindungen für andere Programmiersprachen existieren
-    \begin{itemize}
-    \item \texttt{Frama-C} für \texttt{C}
-    \item \texttt{SPARK} für \texttt{Ada}
-    \end{itemize}
-  \item Automatische Solver: \texttt{Alt-Ergo}, \texttt{CVC3/4}, \texttt{Z3}, uvm. 
-  \item Manuelle Solver: \underline{\texttt{coq}}, \texttt{PVS} und \texttt{Isabelle/HOL}
-  \end{itemize}
-\end{frame}
-\begin{frame}
-  \begin{center}
-    \includegraphics[width=8.0cm]{spark_logo.jpg}    
-    %\Large{\texttt{SPARK}}
-  \end{center}
-  \begin{itemize}
-  \item Erweitere Untermenge von \texttt{Ada}
-  \item kann Vor- und Nachbedingungen teilweise zur Compilezeit prüfen
-  \item kann \texttt{coq}-Code exportieren, um schwere Fälle manuell zu beweisen
-  \item Pro- und GPL Editionen
-  \end{itemize}
 \end{frame}
 \begin{frame}
   \begin{center}
@@ -198,7 +191,7 @@
   \item MIT 2015, u.A. Adam Chlipala
   \item implementiert und verfiziert in \texttt{coq}
   \item extrahierbar nach \texttt{ocaml}, \texttt{Haskell} oder \texttt{go}
-  \item verwenbar mit \texttt{fuse} 
+  \item verwenbar unter Linux mit \texttt{fuse} 
   \end{itemize}
 \end{frame}
 \section{Demo}
@@ -207,7 +200,7 @@
     \huge{Demo}
   \end{center}
 \end{frame}
-\section{Fazit}
+\section{Ausblick}
 \begin{frame}
   \begin{center}
     \Large{Demo hat gezeigt}
@@ -251,9 +244,7 @@
   \end{itemize}
 \end{frame} % to enforce entries in the table of contents
 \begin{frame}
-  \begin{center}
-    \Large{Projekte}
-  \end{center}
+  \frametitle{Projekte}
   \begin{itemize}
   \item Floats for Coq: formalisiere Fließkommazahlen\\
     \qquad \url{http://flocq.gforge.inria.fr/}
@@ -263,6 +254,35 @@
     \qquad \url{http://robbertkrebbers.nl/thesis.html}
   \item RustBelt: Logical Foundations for the Future of Safe Systems Programming\\
     \qquad \url{http://plv.mpi-sws.org/rustbelt/}
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{Projekte}
+  \begin{center}
+    %\includegraphics[width=3.0cm]{why3_logo.png}    
+    \Large{\texttt{Why3}}
+  \end{center}
+  \begin{itemize}
+  \item Platform für Programmverfikation von Programmen in \texttt{WhyML}
+  \item Anbindungen für andere Programmiersprachen existieren
+    \begin{itemize}
+    \item \texttt{Frama-C} für \texttt{C}
+    \item \texttt{SPARK} für \texttt{Ada}
+    \end{itemize}
+  \item Automatische Solver: \texttt{Alt-Ergo}, \texttt{CVC3/4}, \texttt{Z3}, uvm. 
+  \item Manuelle Solver: \underline{\texttt{coq}}, \texttt{PVS} und \texttt{Isabelle/HOL}
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{Projekte}
+  \begin{center}
+    \includegraphics[width=8.0cm]{spark_logo.jpg}    
+  \end{center}
+  \begin{itemize}
+  \item Erweitere Untermenge von \texttt{Ada}
+  \item kann Vor- und Nachbedingungen teilweise zur Compilezeit prüfen
+  \item kann \texttt{coq}-Code exportieren, um schwere Fälle manuell zu beweisen
+  \item Pro- und GPL Editionen
   \end{itemize}
 \end{frame}
 \begin{frame}
