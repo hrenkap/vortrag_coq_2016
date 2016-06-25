@@ -15,7 +15,7 @@ Proof.
  Show Proof.
 Qed.
 
-(* Distributivität von "oder" "\/" und "und" "\/" *)
+(* Distributivität von "oder" "\/" und "und" "/\" *)
 
 Theorem or_distrib: forall P Q R: Prop, (P /\ Q) \/ R -> (P \/ R) /\ (Q \/ R).
 Proof. 
@@ -92,6 +92,7 @@ Qed.
 Definition nat_fun: nat -> nat.
  intro n.
  exact (n*n+4).
+Show Proof.
 Defined.
 
 Check nat_fun. (* Typ zeigen *)
