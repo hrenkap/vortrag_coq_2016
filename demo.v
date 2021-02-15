@@ -221,6 +221,7 @@ Proof.
   intros. 
    case (Compare_dec.le_gt_dec n n1). intros; auto with sort arith.
    intros. apply sorted2; assumption.
+  Show Proof.
 Qed.
 
 
@@ -235,9 +236,10 @@ Eval compute in (isort (4::1::5::3::2::nil)).
 Theorem isort_sorted: forall (l: list nat), sorted (isort l).
 Proof.
  intro l.
- induction l.
-  auto with sort.
+ induction l. simpl. apply sorted0.
+  (* auto with sort. *)
   simpl.
+  Show Proof.
   apply insert_sorted.
   assumption.
   Show Proof.
